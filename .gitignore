@@ -1,0 +1,9 @@
+packages/remote
+**.db
+**vc.db**
+docker/display/Xauthority
+docker/display
+logs
+docker/bags 
+docker/bags.zip
+docker/logs.zip

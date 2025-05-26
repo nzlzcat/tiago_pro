@@ -1,0 +1,22 @@
+services:
+  tiago_pro:
+    container_name: tiago_pro
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      ssh:
+        - default
+    environment:
+      - DISPLAY=${DISPLAY}
+    devices:
+      - /dev/video0:/dev/video0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ../pro.repos:/tmp/pro.repos
+      - pal_home:/home/pal
+    stdin_open: true
+    tty: true
+    network_mode: host
+
+volumes:
+  pal_home:
