@@ -6,17 +6,46 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe m
     echo "deb http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list
 
-# Install dependencies
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install core dependencies
 RUN apt-get update && \
     apt-get install -y \
+        curl \
+        gnupg \
+        lsb-release \
         build-essential \
         libncurses-dev \
-        curl \
         git \
         vim \
         zsh \
-        wget && \
-    apt-get clean
+        wget
+
+# Install Gazebo
+RUN curl -sSL http://get.gazebosim.org | sh
+
+# Add ROS 2 GPG key and repository
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /tmp/ros.key && \
+    gpg --dearmor /tmp/ros.key && \
+    mv /tmp/ros.key.gpg /usr/share/keyrings/ros-archive-keyring.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2.list && \
+    rm /tmp/ros.key
+
+# Install ROS 2 package
+RUN apt-get update && \
+    apt-get install -y joint-state-publisher-gui && \
+    apt-get install -y liburdfdom-tools && \
+    apt-get install -y ros-humble-gazebo-ros && \
+    apt-get install -y ros-humble-controller-manager && \
+    apt-get install -y ros-humble-moveit-configs-utils && \
+    apt-get install -y ros-humble-moveit-ros-move-group && \
+    apt-get install -y ros-humble-play-motion2 && \
+    apt-get install -y ros-humble-point-cloud-transport && \
+    apt-get install -y ros-humble-realsense2-* && \
+    apt-get install -y ros-humble-topic-tools && \
+    apt-get install -y python3-tqdm && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create new user "pal" with home directory
 RUN useradd -m -s /bin/bash pal && \
@@ -55,6 +84,9 @@ RUN mkdir -p /home/pal/ros2_ws/src && \
 
 # Copy and import repositories
 COPY ./pro.repos /tmp/pro.repos
+
+RUN pip3 install git+https://github.com/nzlzcat/vcstool
+
 RUN vcs import /home/pal/ros2_ws/src < /tmp/pro.repos && \
     chown -R pal:pal /home/pal/ros2_ws/src
 

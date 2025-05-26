@@ -39,3 +39,46 @@ repositories:
     type: git
     url: https://github.com/pal-robotics/pal_navigation_cfg_public.git
     version: humble-devel
+  omni_base_robot:
+    type: git
+    url: https://github.com/pal-robotics/omni_base_robot.git
+    version: humble-devel
+  pal_sea_arm:
+    type: git
+    url: https://github.com/pal-robotics/pal_sea_arm.git
+    version: humble-devel
+  pal_sea_arm_moveit_config:
+    type: git
+    url: https://github.com/pal-robotics/pal_sea_arm_moveit_config.git
+    version: humble-devel
+  tiago_pro_head_robot:
+    type: git
+    url: https://github.com/pal-robotics/tiago_pro_head_robot.git
+    version: humble-devel
+  tiago_pro_head_simulation:
+    type: git
+    url: https://github.com/pal-robotics/tiago_pro_head_simulation.git
+    version: humble-devel
+  twist_mux:
+    type: git
+    url: https://github.com/ros-teleop/twist_mux.git
+    version: humble
+  realsense:
+    type: git
+    url: https://github.com/pal-robotics-forks/realsense.git
+    version: alum-devel
+  realsense_gazebo_plugin:
+    type: git
+    url: https://github.com/pal-robotics/realsense_gazebo_plugin.git
+    version: alum-devel
+  realsense_simulation:
+    type: git
+    url: https://github.com/pal-robotics/realsense_simulation.git
+    version: alum-devel
+
+# Danger zone! deps we dont want, but need...
+  allegro_hand_ros:
+    type: git
+    url: https://gitioc.upc.edu/hands/allegro_hand_ros.git
+    version: ros2
+    subdir: allegro_hand_description
