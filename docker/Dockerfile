@@ -56,6 +56,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Note: Check if sudo apt-get install 'ros-humble-pal*' is needed
+
 # Create new user "pal" with home directory
 RUN useradd -m -s /bin/bash pal && \
     echo "pal ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/pal && \
