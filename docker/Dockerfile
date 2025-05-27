@@ -43,6 +43,15 @@ RUN apt-get update && \
     apt-get install -y ros-humble-point-cloud-transport && \
     apt-get install -y ros-humble-realsense2-* && \
     apt-get install -y ros-humble-topic-tools && \
+    apt-get install -y ros-humble-moveit-ros-perception && \
+    apt-get install -y ros-humble-moveit-planners-ompl && \
+    apt-get install -y ros-humble-moveit-planners-chomp && \
+    apt-get install -y ros-humble-moveit-ros-control-interface && \
+    apt-get install -y ros-humble-ros2-control && \
+    apt-get install -y ros-humble-gazebo-ros2-control && \
+    apt-get install -y ros-humble-joint-state-broadcaster && \
+    apt-get install -y ros-humble-imu-sensor-broadcaster && \
+    apt-get install -y ros-humble-joint-trajectory-controller && \
     apt-get install -y python3-tqdm && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -67,7 +76,7 @@ RUN su - pal -c "ZSH=/home/pal/.oh-my-zsh /tmp/install.sh --unattended" && \
 RUN chsh -s /bin/zsh pal
 
 RUN echo "export TERM=xterm-256color" >> /home/pal/.zshrc && \
-    echo 'PROMPT="%F{208}gz%f ${PROMPT}"' >> /home/pal/.zshrc && \
+    echo 'PROMPT="%F{208}gz-tpro%f ${PROMPT}"' >> /home/pal/.zshrc && \
     echo "source /opt/ros/humble/setup.zsh" >> /home/pal/.zshrc && \
     echo "source /opt/pal/alum/setup.zsh" >> /home/pal/.zshrc && \
     echo "source /home/pal/ros2_ws/install/setup.zsh" >> /home/pal/.zshrc && \

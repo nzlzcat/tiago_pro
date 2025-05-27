@@ -43,6 +43,14 @@ repositories:
     type: git
     url: https://github.com/pal-robotics/omni_base_robot.git
     version: humble-devel
+  omni_base_simulation:
+    type: git
+    url: https://github.com/pal-robotics/omni_base_simulation.git
+    version: humble-devel
+  omni_base_navigation:
+    type: git
+    url: https://github.com/pal-robotics/omni_base_navigation.git
+    version: humble-devel
   pal_sea_arm:
     type: git
     url: https://github.com/pal-robotics/pal_sea_arm.git
@@ -50,6 +58,10 @@ repositories:
   pal_sea_arm_moveit_config:
     type: git
     url: https://github.com/pal-robotics/pal_sea_arm_moveit_config.git
+    version: humble-devel
+  pal_sea_arm_simulation:
+    type: git
+    url: https://github.com/pal-robotics/pal_sea_arm_simulation.git
     version: humble-devel
   tiago_pro_head_robot:
     type: git
